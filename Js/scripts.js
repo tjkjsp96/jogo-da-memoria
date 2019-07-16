@@ -22,7 +22,16 @@ let imagens = imagensSalvas.concat(imagensSalvas);
 
 imagens = embaralhar(imagens);
 
-for(let i in cartas){
+for(let i = 0; i < cartas.length; i++){
     cartas[i].style.backgroundImage = `url("images/${imagens[i]}")`;
 }
 
+setTimeout(function(){
+    for(let carta of cartas){
+        carta.style.backgroundImage = 'url("images/troll.png")';
+        carta.onclick = function(){
+            carta.style.backgroundImage = `url("images/${imagens[Number(carta.id)]}")`;
+            carta.onclick = null;
+        }
+    }
+}, 2000);
