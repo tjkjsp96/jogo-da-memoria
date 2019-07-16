@@ -16,6 +16,8 @@ function embaralhar(lista) {
 
 let cartas = document.querySelectorAll(".carta");
 
+let cartaVirada = null;
+
 let imagensSalvas = ["batata.jpg","deadpoool.jpg","drake.jpg","kratos.jpg","macaco.jpg","mario.jpg","rick.jpg","squanty.jpg"];
 
 let imagens = imagensSalvas.concat(imagensSalvas);
@@ -30,8 +32,22 @@ setTimeout(function(){
     for(let carta of cartas){
         carta.style.backgroundImage = 'url("images/troll.png")';
         carta.onclick = function(){
-            carta.style.backgroundImage = `url("images/${imagens[Number(carta.id)]}")`;
-            carta.onclick = null;
+
+            if(cartaVirada && cartaVirada.id !== carta.id){
+                if(cartaVirada.style.backgroundImage === cartaVirada.style.backgroundImage){
+                    cartaVirada.onclick = null;
+                    carta.onclick = null;
+                }
+                else{
+                    carta.style.backgroundImage = 'url("images/troll.png")';
+                    cartaVirada.style.backgroundImage = 'url("images/troll.png")';
+                }
+                cartaVirada = null;
+            }
+            else{
+                carta.style.backgroundImage = `url("images/${imagens[Number(carta.id)]}")`;
+                cartaVirada = carta;
+            }
         }
     }
 }, 2000);
