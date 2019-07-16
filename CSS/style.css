@@ -32,9 +32,12 @@ main{
 }
 
 .carta{
-    background-color: white;
     height: 130px;
     width: 130px;
+    cursor: pointer;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .carta:hover{
